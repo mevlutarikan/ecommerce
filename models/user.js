@@ -25,6 +25,13 @@ const userSchema = mongoose.Schema({
     type: String,
     maxlength: [2]
   },
+  phone: {
+    type: String,
+    maxlength:[12]
+  },
+  birthday: {
+    type: Date
+  },
   addresses: [{
     title: {
       type: String,
@@ -34,7 +41,7 @@ const userSchema = mongoose.Schema({
       type: String,
       maxlength: [250]
     },
-    cityId:Schema.Types.ObjectId,
+    cityId:mongoose.Schema.Types.ObjectId,
     country: {
       type: String,
       maxlength: [2]
@@ -56,6 +63,4 @@ const userSchema = mongoose.Schema({
   timestamps: true
 })
 
-const User = mongoose.model('users', userSchema);
-
-module.exports = User;
+module.exports = mongoose.model('users', userSchema);
