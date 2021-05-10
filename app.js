@@ -3,7 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 
 var indexRouter = require('./routes/index');
-var apiRouter = require('./routes/api');
+var userRouter = require('./routes/user');
 const cors = require('cors');
 var app = express();
 const dotenv = require('dotenv');
@@ -28,7 +28,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'reactapp/build')));
 //app.use('/', indexRouter);
 */
-app.use('/api', apiRouter);
+app.use('/api/user', userRouter);
 
 /* updates serving frontend files from express to nginx
 // Handle any requests that don't match the ones above
