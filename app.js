@@ -6,7 +6,10 @@ var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
 
 var app = express();
+const dotenv = require('dotenv');
 
+// read environment variables
+dotenv.config();
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 
