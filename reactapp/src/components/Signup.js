@@ -1,13 +1,12 @@
 export function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target);
     const formData = new FormData(e.target);
     // validate input data.get("email");
     // validate passwords match
     const jsonData = JSON.stringify(Object.fromEntries(formData.entries()));
 
-    fetch("/api/signup", {
+    fetch(process.env.REACT_APP_API_URL+'/api/signup', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
