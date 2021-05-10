@@ -6,10 +6,10 @@ export function Signup() {
     // validate passwords match
     const jsonData = JSON.stringify(Object.fromEntries(formData.entries()));
 
-    fetch(process.env.REACT_APP_API_URL+'/api/signup', {
-      method: "POST",
+    fetch(process.env.REACT_APP_API_URL + '/api/user/signup', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: jsonData,
     })
