@@ -1,12 +1,12 @@
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-
-var indexRouter = require('./routes/index');
-var userRouter = require('./routes/user');
+var passport = require('passport');
 const cors = require('cors');
 var app = express();
 const dotenv = require('dotenv');
+
+var userRouter = require('./routes/user');
 
 // read environment variables
 dotenv.config();
@@ -22,6 +22,10 @@ app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser());
+
+//initiliaze passport middleware and its strategies
+app.use(passport.initialize());
+require('./utils/passport')(passport);
 
 /* updates serving frontend files from express to nginx
 //Serve static frontend files from the React app build folder
