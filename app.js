@@ -6,8 +6,6 @@ const cors = require('cors');
 var app = express();
 const dotenv = require('dotenv');
 
-var userRouter = require('./routes/user');
-
 // read environment variables
 dotenv.config();
 
@@ -15,6 +13,7 @@ dotenv.config();
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
+    credentials: true,
   })
 );
 
@@ -24,14 +23,15 @@ app.use(express.json());
 app.use(cookieParser());
 
 //initiliaze passport middleware and its strategies
-app.use(passport.initialize());
 require('./utils/passport')(passport);
+app.use(passport.initialize());
 
 /* updates serving frontend files from express to nginx
-//Serve static frontend files from the React app build folder
-app.use(express.static(path.join(__dirname, 'reactapp/build')));
-//app.use('/', indexRouter);
-*/
+  //Serve static frontend files from the React app build folder
+  app.use(express.static(path.join(__dirname, 'reactapp/build')));
+  //app.use('/', indexRouter);
+  */
+var userRouter = require('./routes/user');
 app.use('/api/user', userRouter);
 
 /* updates serving frontend files from express to nginx
